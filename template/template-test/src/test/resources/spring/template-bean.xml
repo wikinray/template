@@ -26,5 +26,6 @@
 		</property>
 	</bean>
 
-	<import resource="applationContext-jedis.xml"/>
+	<!--<import resource="applationContext-jedis.xml"/>-->
+	<import resource="applationContext-jedisCluster.xml"/>
 </beans>
