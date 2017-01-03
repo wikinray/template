@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+       <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+           <property name="maxTotal" value="4096"/>
+           <property name="maxIdle" value="200"/>
+           <property name="maxWaitMillis" value="3000"/>
+           <property name="testOnBorrow" value="true"/>
+           <property name="testOnReturn" value="true"/>
+       </bean>
+
+        <bean id="shardedJedisPool" class="redis.clients.jedis.ShardedJedisPool">
+            <constructor-arg index="0" ref="poolConfig"/>
+            <constructor-arg index="1">
+                <list>
+                    <bean class="redis.clients.jedis.JedisShardInfo">
+                        <constructor-arg index="0" value="192.168.109.143" type="java.lang.String"/>
+                        <!-- shard name -->
+                        <constructor-arg index="1" value="Shard-1" type="java.lang.String"/>
+                        <constructor-arg index="2" value="6379" type="int"/>
+                        <!-- timeout,default is 2 sec -->
+                        <constructor-arg index="3" value="2000" type="int"/>
+                        <!-- weight,default is 1 -->
+                        <constructor-arg index="4" value="1" type="int"/>
+                    </bean>
+                    <bean class="redis.clients.jedis.JedisShardInfo">
+                        <constructor-arg index="0" value="192.168.109.143" type="java.lang.String"/>
+                        <constructor-arg index="1" value="Shard-2" type="java.lang.String"/>
+                        <constructor-arg index="2" value="6479" type="int"/>
+                        <constructor-arg index="3" value="2000" type="int"/>
+                        <constructor-arg index="4" value="1" type="int"/>
+                    </bean>
+                    <bean class="redis.clients.jedis.JedisShardInfo">
+                        <constructor-arg index="0" value="192.168.109.143" type="java.lang.String"/>
+                        <constructor-arg index="1" value="Shard-3" type="java.lang.String"/>
+                        <constructor-arg index="2" value="6579" type="int"/>
+                        <constructor-arg index="3" value="2000" type="int"/>
+                        <constructor-arg index="4" value="1" type="int"/>
+                    </bean>
+                    <bean class="redis.clients.jedis.JedisShardInfo">
+                        <constructor-arg index="0" value="192.168.109.143" type="java.lang.String"/>
+                        <constructor-arg index="1" value="Shard-4" type="java.lang.String"/>
+                        <constructor-arg index="2" value="6679" type="int"/>
+                        <constructor-arg index="3" value="2000" type="int"/>
+                        <constructor-arg index="4" value="2" type="int"/>
+                    </bean>
+                </list>
+            </constructor-arg>
+        </bean>
+</beans>
