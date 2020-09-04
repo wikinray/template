@@ -56,5 +56,7 @@
     <modules>
         <module>user</module>
         <module>activity-bom</module>
+        <module>auth</module>
+        <module>activity-common</module>
     </modules>
 </project>

@@ -1,8 +1,20 @@
 spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://172.16.2.103/seventeen?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: test
+    password: test
+
+
+
   cloud:
     nacos:
       discovery:
         server-addr: ${nacos.servers}
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  base-packages: com.jft.marketing.dao.mapper
 
 nacos:
   servers: 172.16.2.101:8848,172.16.2.104:8848,172.16.2.105:8848
@@ -19,3 +31,4 @@ dubbo:
     port: 20882
     name: dubbo
     serialization: kryo
+
