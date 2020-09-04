@@ -1,0 +1,21 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${nacos.servers}
+
+nacos:
+  servers: 172.16.2.101:8848,172.16.2.104:8848,172.16.2.105:8848
+
+dubbo:
+  scan:
+    base-packages: com.jft.marketing.service.imp
+  registry:
+    address: ${nacos.servers}
+    protocol: nacos
+  application:
+    name: activity-user
+  protocol:
+    port: 20882
+    name: dubbo
+    serialization: kryo

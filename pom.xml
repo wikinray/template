@@ -2,24 +2,27 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.3.RELEASE</version>
+    </parent>
+
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.xmylx.marketing</groupId>
+    <groupId>com.jft.marketing</groupId>
     <artifactId>activity-parent</artifactId>
     <name>${project.artifactId}</name>
     <version>1.0.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
 
+        <springcloud-alibaba.version>2.2.1.RELEASE</springcloud-alibaba.version>
+        <dubbo.version>2.7.8</dubbo.version>
     </properties>
-
-
-
-    <dependencyManagement>
-
-    </dependencyManagement>
-
-
 
     <build>
         <plugins>
@@ -51,7 +54,7 @@
     </build>
 
     <modules>
-        <module>template</module>
-        <module>template-resources</module>
+        <module>user</module>
+        <module>activity-bom</module>
     </modules>
 </project>
